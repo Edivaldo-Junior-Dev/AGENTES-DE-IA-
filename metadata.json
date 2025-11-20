@@ -1,0 +1,5 @@
+{
+  "name": "Career Agent 1.0",
+  "description": "An autonomous career agent powered by Gemini 2.5, pre-loaded with Edivaldo Pereira Lima Junior's professional profile, skills, and project history.",
+  "requestFramePermissions": []
+}
