@@ -1,7 +1,16 @@
+
 export enum Sender {
   USER = 'USER',
   AGENT = 'AGENT',
   SYSTEM = 'SYSTEM'
+}
+
+export interface Attachment {
+  id: string;
+  type: 'image' | 'audio' | 'file';
+  url: string; // Base64 ou URL local para preview
+  mimeType: string;
+  name: string;
 }
 
 export interface ChatMessage {
@@ -12,13 +21,14 @@ export interface ChatMessage {
   isThinking?: boolean;
   relatedTopic?: string;
   feedback?: 'positive' | 'negative';
+  attachments?: Attachment[];
 }
 
 export interface ResumeSection {
   title: string;
   content: string | string[];
   icon: string;
-  query: string; // The question to ask when clicked
+  query: string;
 }
 
 export interface ResumeData {
@@ -34,24 +44,27 @@ export interface ResumeData {
     };
   };
   sections: ResumeSection[];
+  fullSkillsList: string[];
 }
 
 export interface SidebarProps {
   onQuery: (query: string) => void;
   onReset: () => void;
+  onOpenConsultant: () => void;
 }
 
 export interface ChatInterfaceProps {
   pendingQuery: string | null;
   onClearPendingQuery: () => void;
   onReset?: () => void;
+  isConsultantMode?: boolean;
 }
 
 export interface FeedbackLog {
-  id?: string;
+  id: string;
+  appVersion: string;
   timestamp: Date;
+  feedbackType: 'positive' | 'negative';
   userQuery: string;
   agentResponse: string;
-  feedbackType: 'positive' | 'negative';
-  appVersion?: string;
 }
